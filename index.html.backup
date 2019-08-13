@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
+<style type="text/css">
+  body { background-color: #020; color: #080; font-family: verdana; }
+  #center { margin-top: -80px;margin-left: -400px; position: absolute; top: 40%; left: 50%; width: 800px; height: 168px; text-align: center; }
+  h1 { font-size: 50px; }
+  h2 { font-size: 30px; }
+</style>
+<title>Er det St. Patrick's Day?</title> 
+<script type="text/javascript">
+function shamrock() {
+  var root = document.getElementsByTagName('body')[0];
+  var image = document.createElement('img');
+  image.setAttribute('src','shamrock.png');
+  image.style.position = 'absolute';
+  image.style.left = Math.floor(Math.random()*(window.innerWidth-32)) + 'px';
+  image.style.top = Math.floor(Math.random()*(window.innerHeight-32)) + 'px';
+  image.style.zIndex = '-1';
+  root.appendChild(image);
+}
+
+function isitstpatricksday() {
+  var text = document.getElementById("text");
+  var today = new Date();
+
+  /* fixes some problems with years */
+  var year = today.getFullYear();
+//  if ((navigator.appName == "Microsoft Internet Explorer") && (year < 2000))
+//  year = "19" + year;
+//  if (navigator.appName == "Netscape")
+//  year = 1900 + year;
+
+  if (today.getMonth() == 2 && today.getDate() == 17) {
+    text.innerHTML = "Ohh yeah!";
+    for (i=0;i<=100;i++)
+      shamrock();
+  } else {
+    var target = new Date("March 17, " + year);
+    var days = Math.floor((target.getTime() - today.getTime())/(24*60*60*1000))+1 ;
+    text.innerHTML = "Nay - " + days + " dage endnu...";
+  }
+}
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29415998-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head> 
+<body onload="isitstpatricksday();">
+<div id="center">
+<h2>Er det St. Patrick's Day?</h2> 
+<h1 id="text"></h1>
+</div>
+</body>
+</html>
